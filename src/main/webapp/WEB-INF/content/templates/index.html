@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sth="http://serendip.thymeleaf">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Custom styles for this template -->
+<link href="./css/kashin.css" rel="stylesheet">
+</head>
+<body>
+<!-- navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">家臣団 能力 計算機 ver #3 (2017.1)</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!-- navigation -->
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="col-md-3">
+
+			<div class="category-header">職業・レベル</div>
+
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon">職業</div>
+					<select id="selectjob" class="form-control">
+						<option value="0">侍</option>
+						<option value="1">陰陽</option>
+						<option value="2">忍者</option>
+						<option value="3">僧</option>
+						<option value="4">神職</option>
+						<option value="5">鍛冶屋</option>
+						<option value="6">薬師</option>
+						<option value="7">傾奇者</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon">レベル</div>
+					<input type="text" name="lv" id="lv" size="5" maxlength="5" class="form-control" title="レベルは自動計算されます"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon">訓練時の上昇率</div>
+					<select id="trainingRate" class="form-control">
+						<option value=0>+5.00&nbsp;|&nbsp;+60.0</option>
+						<option value=1>+5.25&nbsp;|&nbsp;+62.5</option>
+						<option value=2>+5.50&nbsp;|&nbsp;+65.0</option>
+						<option value=3>+5.75&nbsp;|&nbsp;+67.5</option>
+						<option value=4>+6.00&nbsp;|&nbsp;+70.0</option>
+						<option value=5>+6.25&nbsp;|&nbsp;+72.5</option>
+						<option value=6>+6.50&nbsp;|&nbsp;+75.0</option>
+						<option value=7>+6.75&nbsp;|&nbsp;+77.5</option>
+					</select>
+				</div>
+			</div>
+
+			<hr />初期振り<hr />
+				<form class="form-inline" id="baseForm">
+					<div class="input-prepend input-append">
+						<span class="add-on label-base-status">腕力</span>
+						<button class="btn" type="button" name="i_str_minus" id="i_str_minus" onclick="baseStatus(this)">&lt;</button>
+						<input type="text" name="i_str" id="i_str" size="2" maxlength="2" class="status span3" value="0"  />
+						<button class="btn" type="button" name="i_str_plus" id="i_str_plus" onclick="baseStatus(this)">&gt;</button>
+					</div>
+					<br />
+					<div class="input-prepend input-append">
+						<span class="add-on label-base-status">耐久</span>
+						<button class="btn" type="button" name="i_vit_minus" id="i_vit_minus" onclick="baseStatus(this)">&lt;</button>
+						<input type="text" name="i_vit" id="i_vit" size="2" maxlength="2" class="status span3" value="0"  />
+						<button class="btn" type="button" name="i_vit_plus" id="i_vit_plus" onclick="baseStatus(this)">&gt;</button>
+					</div>
+					<br />
+					<div class="input-prepend input-append">
+						<span class="add-on label-base-status">器用</span>
+						<button class="btn" type="button" name="i_agl_minus" id="i_agl_minus" onclick="baseStatus(this)">&lt;</button>
+						<input type="text" name="i_agl" id="i_agl" size="2" maxlength="2" class="status span3" value="0"  />
+						<button class="btn" type="button" name="i_agl_plus" id="i_agl_plus" onclick="baseStatus(this)">&gt;</button>
+					</div>
+					<br />
+					<div class="input-prepend input-append">
+						<span class="add-on label-base-status">知力</span>
+						<button class="btn" type="button" name="i_itl_minus" id="i_itl_minus" onclick="baseStatus(this)">&lt;</button>
+						<input type="text" name="i_itl" id="i_itl" size="2" maxlength="2" class="status span3" value="0"  />
+						<button class="btn" type="button" name="i_itl_plus" id="i_itl_plus" onclick="baseStatus(this)">&gt;</button>
+					</div>
+					<br />
+					<div class="input-prepend input-append">
+						<span class="add-on label-base-status">魅力</span>
+						<button class="btn" type="button" name="i_cha_minus" id="i_cha_minus" onclick="baseStatus(this)">&lt;</button>
+						<input type="text" name="i_cha" id="i_cha" size="2" maxlength="2" class="status span3" value="0"  />
+						<button class="btn" type="button" name="i_cha_plus" id="i_cha_plus" onclick="baseStatus(this)">&gt;</button>
+					</div>
+				</form>
+			</div>
+			<br />
+			<input type="button" class="btn btn-success" name="recalc" id="recalc" value="再計算" />
+		</div>
+
+		<div class="col-md-9">
+
+			<div id="message" class="alert alert-info"></div>
+
+			<div class="row">
+
+			</div>
+
+			<form class="form-inline">
+
+			<div class="row">
+				<div class="col-md-4">
+				<!-- 生命 -->
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">生命</div>
+						<input type="text" name="hp" id="hp" size="5" maxlength="5" class="form-control" />
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="hp_minus_10" id="hp_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="hp_minus_1" id="hp_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="hp_add" id="hp_add" size="2" maxlength="2" class="form-control" value="0"  />
+					<button class="btn" type="button" name="hp_plus_1" id="hp_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="hp_plus_10" id="hp_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">訓練後</div>
+						<input type="text" name="hp_ex" id="hp_ex" size="5" maxlength="5" class="form-control" value="0"/>
+					</div>
+				</div>
+				</div>
+
+				</div>
+			</form>
+
+				<!-- 気合 -->
+				<div class="input-prepend">
+					<span class="add-on">気合</span>
+					<input type="text" name="mp" id="mp" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="mp_minus_10" id="mp_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="mp_minus_1" id="mp_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="mp_add" id="mp_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="mp_plus_1" id="mp_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="mp_plus_10" id="mp_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">気合</span>
+					<input type="text" name="mp_ex" id="mp_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 腕力 -->
+				<div class="input-prepend">
+					<span class="add-on">腕力</span>
+					<input type="text" name="str" id="str" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="str_minus_10" id="str_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="str_minus_1" id="str_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="str_add" id="str_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="str_plus_1" id="str_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="str_plus_10" id="str_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">腕力</span>
+					<input type="text" name="str_ex" id="str_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 耐久 -->
+				<div class="input-prepend">
+					<span class="add-on">耐久</span>
+					<input type="text" name="vit" id="vit" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="vit_minus_10" id="vit_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="vit_minus_1" id="vit_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="vit_add" id="vit_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="vit_plus_1" id="vit_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="vit_plus_10" id="vit_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">耐久</span>
+					<input type="text" name="vit_ex" id="vit_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 器用 -->
+				<div class="input-prepend">
+					<span class="add-on">器用</span>
+					<input type="text" name="agl" id="agl" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="agl_minus_10" id="agl_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="agl_minus_1" id="agl_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="agl_add" id="agl_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="agl_plus_1" id="agl_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="agl_plus_10" id="agl_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">器用</span>
+					<input type="text" name="agl_ex" id="agl_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 知力 -->
+				<div class="input-prepend">
+					<span class="add-on">知力</span>
+					<input type="text" name="itl" id="itl" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="itl_minus_10" id="itl_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="itl_minus_1" id="itl_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="itl_add" id="itl_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="itl_plus_1" id="itl_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="itl_plus_10" id="itl_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">知力</span>
+					<input type="text" name="itl_ex" id="itl_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 魅力 -->
+				<div class="input-prepend">
+					<span class="add-on">魅力</span>
+					<input type="text" name="cha" id="cha" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="cha_minus_10" id="cha_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="cha_minus_1" id="cha_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="cha_add" id="cha_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="cha_plus_1" id="cha_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="cha_plus_10" id="cha_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">魅力</span>
+					<input type="text" name="cha_ex" id="cha_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 土 -->
+				<div class="input-prepend">
+					<span class="add-on">土属</span>
+					<input type="text" name="earth" id="earth" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="earth_minus_10" id="earth_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="earth_minus_1" id="earth_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="earth_add" id="earth_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="earth_plus_1" id="earth_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="earth_plus_10" id="earth_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">土属 </span>
+					<input type="text" name="earth_ex" id="earth_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 水 -->
+				<div class="input-prepend">
+					<span class="add-on">水属</span>
+					<input type="text" name="water" id="water" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="water_minus_10" id="water_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="water_minus_1" id="water_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="water_add" id="water_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="water_plus_1" id="water_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="water_plus_10" id="water_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">水属</span>
+					<input type="text" name="water_ex" id="water_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 火 -->
+				<div class="input-prepend">
+					<span class="add-on">火属</span>
+					<input type="text" name="fire" id="fire" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="fire_minus_10" id="fire_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="fire_minus_1" id="fire_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="fire_add" id="fire_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="fire_plus_1" id="fire_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="fire_plus_10" id="fire_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">火属</span>
+					<input type="text" name="fire_ex" id="fire_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+				<br />
+
+				<!-- 風 -->
+				<div class="input-prepend">
+					<span class="add-on">風属</span>
+					<input type="text" name="wind" id="wind" size="5" maxlength="5" class="form-control" />
+				</div>
+
+				<div class="input-prepend input-append">
+					<button class="btn" type="button" name="wind_minus_10" id="wind_minus_10" onclick="pushStatus(this)">&laquo;</button>
+					<button class="btn" type="button" name="wind_minus_1" id="wind_minus_1" onclick="pushStatus(this)">&lt;</button>
+					<input type="text" name="wind_add" id="wind_add" size="2" maxlength="2" class="status span3" value="0"  />
+					<button class="btn" type="button" name="wind_plus_1" id="wind_plus_1" onclick="pushStatus(this)">&gt;</button>
+					<button class="btn" type="button" name="wind_plus_10" id="wind_plus_10" onclick="pushStatus(this)">&raquo;</button>
+				</div>
+
+				<div class="input-prepend">
+					<span class="add-on label-after-train">訓練後</span>
+					<span class="add-on">風属</span>
+					<input type="text" name="wind_ex" id="wind_ex" size="5" maxlength="5" class="form-control" value="0"/>
+				</div>
+
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script src="./js/kashin.js"></script>
+<script language="JavaScript">
+	$(document).ready( function() {
+	//	changejob();
+	//	recalcStatus();
+
+		$("#selectjob").change( function() {
+			changejob();
+			recalcStatus();
+		});
+
+		$("#recalc").click( function() {
+			getInitialStatus();
+
+			job = $("#selectjob").val();
+			recalcStatus();
+		});
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+body {
+  padding-top:60px;
+}
+
+.errorLabel {
+	color: #70BB70;
+}
+
+div.category-header {
+	margin: 10px 0 10px 0;
+	padding: 0 0 0 20px;
+	border: 0 0 0 6px;
+	border-color: #338899;
+	border-style: none none none solid;
+	font-weight: bold;
+}
+
+.yform {
+	width: 800px;
+}
+.txt {
+	width: 230px;
+}
+.type-text {
+	font-family: meiryo , Osaka , tahoma;
+	font-size:14px;
+}
+.bluestrong {
+	color: #55D;
+	font-weight: 700;
+}
+.missionLabel {
+	witdh : 10em;
+	float : left;
+}
+.missionPulldown {
+	clear : left;
+}
+.ibox {
+	height : 28px;
+}
+.status {
+	width : 35px;
+	text-align : right;
+}
+
+.trainingRate {
+	width : 140px;
+}
+
+.status_ex {
+	background-color : #DDDDDD;
+	color : #8888EE;
+
+}
+.job {
+	width : 100px;
+}
+
+.tile-smallbox-font {
+	padding-left : 5px;
+	color : #222;
+}
+
+.label-after-train {
+	background-color : #67E !important;
+	color : #FFF !important;
+	text-shadow : 0 0 0 #FFF !important;
+}
+
+.label-base-status {
+	background-color : #5C5 !important;
+	color : #FFF !important;
+	text-shadow : 0 0 0 #FFF !important;
+}
+
+.input-append .add-on .label-after-train {
+	background-color : #9D9;
+}
+
+.ui-slider .ui-slider-handle {
+	position: absolute; z-index: 2; cursor: default; height: 32px;
+}
+
+.status_box {
+	display: inline-block;
+}
+
+.status_slider {
+	width: 70px; margin: 1px; height:13px; padding:6px;
+}
+
+.train_value {
+	width: 33px; vertical-align: middle; text-align: right; padding:3px;
+}
+
+.job_later {
+	color : #ccc;
+}
+
+.status_label {
+	width: 40px; text-align: right; display: inline-block; padding:3px;
+}
+
+.status_label_hp {
+	background-color : #EFE;
+}
+
+.status_label_sp {
+	background-color : #EEF;
+}
+
+.status_label_st {
+	background-color : #FFE;
+}
+
+.status_label_el {
+	background-color : #DFF;
+}
